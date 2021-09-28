@@ -14,6 +14,12 @@
   margin: 2px 20px;
 }
 
+.home-card {
+  max-width: 600px;
+  height: max-content;
+  margin: 26px auto;
+}
+
 .mycard {
   margin-top: 30px;
 }
@@ -32,6 +38,11 @@
   box-shadow: 0 1px 0 0 rgb(8, 93, 252) !important;
 }
 
+#toast-container {
+  top: 70px !important;
+  right: 100px !important;
+  left: auto !important;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

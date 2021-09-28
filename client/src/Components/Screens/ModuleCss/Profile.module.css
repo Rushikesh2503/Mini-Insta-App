@@ -1,0 +1,32 @@
+.mainDivProf {
+  max-width: 750px;
+  margin: 0px auto;
+}
+
+.prof2 {
+  display: flex;
+  justify-content: space-around;
+  margin: 18px 0px;
+  border-bottom: 1px solid gray;
+}
+.prof2_img {
+  width: 160px;
+  height: 160px;
+  border-radius: 80px;
+}
+.prof2_conte {
+  width: 108%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.gallary {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.item {
+  width: 30%;
+  margin-top: 20px;
+  cursor: pointer;
+}

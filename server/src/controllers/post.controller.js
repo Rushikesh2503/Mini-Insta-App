@@ -4,7 +4,7 @@ const router = express.Router();
 const signinRe = require("../middlewares/signinRe");
 const Post = require("../models/post.model");
 
-router.get("/allposts", function (req, res) {
+router.get("/allposts", signinRe, function (req, res) {
   Post.find()
     .populate("postedBy", "_id name")
     .then((posts) => {
@@ -16,8 +16,8 @@ router.get("/allposts", function (req, res) {
 });
 
 router.post("/createpost", signinRe, (req, res) => {
-  const { title, body } = req.body;
-  if (!title || !body) {
+  const { title, body, pic } = req.body;
+  if (!title || !body || !pic) {
     return res.status(422).json({ error: "Please Add All Required Fields" });
   }
 
@@ -26,6 +26,7 @@ router.post("/createpost", signinRe, (req, res) => {
   const post = new Post({
     title,
     body,
+    photo: pic,
     postedBy: req.user,
   });
 
