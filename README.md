@@ -1,3 +1,3 @@
 # instaDemo
 
-* *Site Under Construction*
+* *Website Under Construction*
