@@ -9,6 +9,7 @@ const Post = require("./models/post.model");
 
 app.use(require("./controllers/auth.controller"));
 app.use(require("./controllers/post.controller"));
+app.use(require("./controllers/user.controller"));
 
 app.listen(process.env.SERVER_PORT, async function () {
   await connect();

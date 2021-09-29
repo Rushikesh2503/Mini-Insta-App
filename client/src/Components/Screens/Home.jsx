@@ -18,15 +18,95 @@ const Home = () => {
         console.log(result);
         setData(result.posts);
       });
-  }, []);
+  }, [])
+
+    const likePost = (id)=>{
+          fetch('/like',{
+              method:"put",
+              headers:{
+                  "Content-Type":"application/json",
+                  "Authorization":"Bearer "+localStorage.getItem("jwt")
+              },
+              body:JSON.stringify({
+                  postId:id
+              })
+          }).then(res=>res.json())
+          .then(result=>{
+                   //   console.log(result)
+            const newData = data.map(item=>{
+                if(item._id===result._id){
+                    return result
+                }else{
+                    return item
+                }
+            })
+            setData(newData)
+          }).catch(err=>{
+             console.log('err:', err)
+             
+          })
+    }
+    const unlikePost = (id)=>{
+          fetch('/unlike',{
+              method:"put",
+              headers:{
+                  "Content-Type":"application/json",
+                  "Authorization":"Bearer "+localStorage.getItem("jwt")
+              },
+              body:JSON.stringify({
+                  postId:id
+              })
+          }).then(res=>res.json())
+          .then(result=>{
+            //   console.log(result)
+            const newData = data.map(item=>{
+                if(item._id===result._id){
+                    return result
+                }else{
+                    return item
+                }
+            })
+            setData(newData)
+          }).catch(err=>{
+          console.log('err:', err)
+        })
+  }
+  
+   const makeComment = (text,postId)=>{
+          fetch('/comment',{
+              method:"put",
+              headers:{
+                  "Content-Type":"application/json",
+                  "Authorization":"Bearer "+localStorage.getItem("jwt")
+              },
+              body:JSON.stringify({
+                  postId,
+                  text
+              })
+          }).then(res=>res.json())
+          .then(result=>{
+              //console.log(result)
+              const newData = data.map(item=>{
+                if(item._id===result._id){
+                    return result
+                }else{
+                    return item
+                }
+             })
+            setData(newData)
+          }).catch(err=>{
+              console.log('err:', err)
+              
+          })
+    }
+
   return (
     <div className={styled.homeMainDiv}>
       {data.map((item) => {
         return (
           <div className="card home-card" key={item._id}>
-            <h5 style={{ padding: "5px" }}>
-              {item.postedBy.name}
-              {/* <Link
+            <h6 style={{ padding: "5px",margin:" 0 10px" }}>
+              <Link
                 to={
                   item.postedBy._id !== state._id
                     ? "/profile/" + item.postedBy._id
@@ -34,7 +114,7 @@ const Home = () => {
                 }
               >
                 {item.postedBy.name}
-              </Link>{" "} */}
+              </Link>{" "}
               {/* {item.postedBy._id == state._id && (
                 <i
                   className="material-icons"
@@ -46,38 +126,45 @@ const Home = () => {
                   delete
                 </i>
               )} */}
-            </h5>
+            </h6>
+            <br />
             <div className="card-image">
-              <img src={item.photo} />
+              <img src={item.photo} alt="img"/>
             </div>
             <div className="card-content">
-              <i className="material-icons" style={{ color: "red" }}>
-                favorite
-              </i>
-              {/* {item.likes.includes(state._id) ? (
+              {/* <i className="material-icons" >
+                
+              </i> */}
+              {item.likes.includes(state._id) ? (
                 <i
                   className="material-icons"
+                  style={{ color: "red",cursor:"pointer"}}
+                  
                   onClick={() => {
-                    // unlikePost(item._id);
+                    unlikePost(item._id);
                   }}
                 >
-                  thumb_down
+                  favorite
                 </i>
               ) : (
                 <i
-                  className="material-icons"
+                    className="material-icons"
+                    style={{
+                      color: "#dcdce0",
+                      cursor:"pointer"
+                    }}
                   onClick={() => {
-                    // likePost(item._id);
+                    likePost(item._id);
                   }}
                 >
-                  thumb_up
+                  favorite
                 </i>
-              )} */}
+              )}
 
-              {/* <h6>{item.likes.length} likes</h6> */}
+              <h6>{item.likes.length} likes</h6>
               <h6>{item.title}</h6>
               <p>{item.body}</p>
-              {/* {item.comments.map((record) => {
+              {item.comments.map((record) => {
                 return (
                   <h6 key={record._id}>
                     <span style={{ fontWeight: "500" }}>
@@ -86,11 +173,11 @@ const Home = () => {
                     {record.text}
                   </h6>
                 );
-              })} */}
+              })}
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  // makeComment(e.target[0].value, item._id);
+                  makeComment(e.target[0].value, item._id);
                 }}
               >
                 <input type="text" placeholder="add a comment" />
