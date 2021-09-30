@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../App";
 import { Link } from "react-router-dom";
@@ -98,21 +99,29 @@ const Home = () => {
               console.log('err:', err)
               
           })
-    }
+  }
+  var imageTrial = "https://res.cloudinary.com/rsbrsb/image/upload/v1632979599/blank-profile-picture-973460_640_nqo8um.png";
 
   return (
     <div className={styled.homeMainDiv}>
       {data.map((item) => {
+        console.log('item:', item)
         return (
           <div className="card home-card" key={item._id}>
             <div>
-            <h6 style={{ padding: "5px",margin:" 0 10px" }}>
+              
+              <h6 style={{ padding: "10px 0 0 0", margin: "10px 0 10px 10px", display:"flex" }}>
+                <div>
+                  <img src={item.postedBy.pic?item.postedBy.pic:imageTrial} alt="" style={{width: "40px", height: "40px",borderRadius:"49%",marginRight:"20px"}}/>
+                </div>
+                
               <Link
                 to={
                   item.postedBy._id !== state._id
                     ? "/profile/" + item.postedBy._id
                     : "/profile"
                 }
+                  style={{marginTop:"10px"}}
               >
                 {item.postedBy.name}
               </Link>{" "}  {item.postedBy._id === state._id && (

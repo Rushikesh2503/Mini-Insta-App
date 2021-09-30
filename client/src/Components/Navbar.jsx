@@ -16,7 +16,7 @@ const Navbar = () => {
      const renderList = ()=>{
        if(state){
            return [
-            <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>,
+            <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"white",cursor:"pointer"}}>search</i></li>,
             <li key="2"><Link to="/profile">Profile</Link></li>,
             <li key="3"><Link to="/create">Create Post</Link></li>,
             <li key="4"><Link to="/myfollowingpost">All Feed</Link></li>,
@@ -70,26 +70,28 @@ const Navbar = () => {
   
           </ul>
         </div>
-        <div id="modal1" class="modal" ref={searchModal} style={{color:"black"}}>
+        <div id="modal1" className="modal" ref={searchModal} style={{color:"black"}}>
           <div className="modal-content">
           <input
             type="text"
-            placeholder="search users"
+            placeholder="Search User"
             value={search}
             onChange={(e)=>fetchUsers(e.target.value)}
             />
              <ul className="collection">
                {userDetails.map(item=>{
-                 return <Link to={item._id !== state._id ? "/profile/"+item._id:'/profile'} onClick={()=>{
+                 return <Link to={item._id !== state?._id ? "/profile/"+item?._id:'/profile'} onClick={()=>{
                    M.Modal.getInstance(searchModal.current).close()
                    setSearch('')
-                 }}><li className="collection-item">{item.email}</li></Link> 
+                 }} >
+                   <li className="collection-item" style={{ color: "black",width: "100%"}}>{item.name}</li>
+                 </Link>
                })}
                
               </ul>
           </div>
           <div className="modal-footer">
-            <button className="modal-close waves-effect waves-green btn-flat" onClick={()=>setSearch('')}>close</button>
+            <button className="modal-close waves-effect waves-green btn-flat" onClick={()=>setSearch('')}>Close</button>
           </div>
         </div>
       </nav>

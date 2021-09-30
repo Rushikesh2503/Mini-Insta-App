@@ -19,9 +19,9 @@ const Signup = () => {
     const uploadPic = ()=>{
         const data = new FormData()
         data.append("file",image)
-        data.append("upload_preset","new-insta")
-        data.append("cloud_name","cnq")
-        fetch("/signup",{
+        data.append("upload_preset","miniinsta")
+        data.append("cloud_name","rsbrsb")
+        fetch("	https://api.cloudinary.com/v1_1/rsbrsb/image/upload",{
             method:"post",
             body:data
         })

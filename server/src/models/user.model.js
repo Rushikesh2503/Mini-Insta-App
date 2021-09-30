@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
     pic: {
       type: String,
       default:
-        "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
+        "https://res.cloudinary.com/rsbrsb/image/upload/v1632979599/blank-profile-picture-973460_640_nqo8um.png",
     },
     followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],

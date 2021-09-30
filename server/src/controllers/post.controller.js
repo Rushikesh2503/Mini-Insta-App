@@ -56,7 +56,7 @@ router.get("/myposts", signinRe, function (req, res) {
 router.get("/followingposts", signinRe, (req, res) => {
   // if postedBy in following list by $in
   Post.find({ postedBy: { $in: req.user.following } })
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name pic")
     .populate("comments.postedBy", "_id name")
     .sort("-createdAt")
     .then((posts) => {
@@ -77,6 +77,7 @@ router.put("/like", signinRe, (req, res) => {
       new: true,
     }
   )
+    .populate("comments.postedBy", "_id name")
     .populate("postedBy", "_id name")
     .exec((err, result) => {
       if (err) {
@@ -96,6 +97,7 @@ router.put("/unlike", signinRe, (req, res) => {
       new: true,
     }
   )
+    .populate("comments.postedBy", "_id name")
     .populate("postedBy", "_id name")
     .exec((err, result) => {
       if (err) {

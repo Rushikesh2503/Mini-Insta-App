@@ -9,6 +9,14 @@
   margin: 18px 0px;
   border-bottom: 1px solid gray;
 }
+
+.prof22 {
+  margin: 18px 0px;
+  border-bottom: 1px solid gray;
+}
+.imgupload {
+  cursor: pointer;
+}
 .prof2_img {
   width: 160px;
   height: 160px;
