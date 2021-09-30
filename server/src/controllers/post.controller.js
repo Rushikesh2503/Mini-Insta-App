@@ -53,6 +53,20 @@ router.get("/myposts", signinRe, function (req, res) {
     });
 });
 
+router.get("/followingposts", signinRe, (req, res) => {
+  // if postedBy in following list by $in
+  Post.find({ postedBy: { $in: req.user.following } })
+    .populate("postedBy", "_id name")
+    .populate("comments.postedBy", "_id name")
+    .sort("-createdAt")
+    .then((posts) => {
+      res.json({ posts });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 router.put("/like", signinRe, (req, res) => {
   Post.findByIdAndUpdate(
     req.body.postId,
@@ -62,13 +76,15 @@ router.put("/like", signinRe, (req, res) => {
     {
       new: true,
     }
-  ).exec((err, result) => {
-    if (err) {
-      return res.status(422).json({ error: err });
-    } else {
-      res.json(result);
-    }
-  });
+  )
+    .populate("postedBy", "_id name")
+    .exec((err, result) => {
+      if (err) {
+        return res.status(422).json({ error: err });
+      } else {
+        res.json(result);
+      }
+    });
 });
 router.put("/unlike", signinRe, (req, res) => {
   Post.findByIdAndUpdate(
@@ -79,13 +95,15 @@ router.put("/unlike", signinRe, (req, res) => {
     {
       new: true,
     }
-  ).exec((err, result) => {
-    if (err) {
-      return res.status(422).json({ error: err });
-    } else {
-      res.json(result);
-    }
-  });
+  )
+    .populate("postedBy", "_id name")
+    .exec((err, result) => {
+      if (err) {
+        return res.status(422).json({ error: err });
+      } else {
+        res.json(result);
+      }
+    });
 });
 
 router.put("/comment", signinRe, (req, res) => {

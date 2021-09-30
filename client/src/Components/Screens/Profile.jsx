@@ -32,9 +32,9 @@ const Profile = () => {
                 <div>
                     <h4>{state?state.name:"loading"}</h4>
                     <div className={styled.prof2_conte} >
-                        <h6>20 Posts</h6>
-                        <h6>40 Followers</h6>
-                        <h6>40 Following</h6>
+                        <h6>{mypics.length} Posts</h6>
+                         <h6>{state?state.followers.length:"0"} followers</h6>
+                       <h6>{state?state.following.length:"0"} following</h6>
                     </div>
                     </div>
                     </div>

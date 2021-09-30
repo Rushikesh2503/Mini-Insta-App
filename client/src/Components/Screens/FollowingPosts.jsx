@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import styled from "./ModuleCss/Home.module.css";
 import "../../App.css";
 
-const Home = () => {
+const FollowingPosts = () => {
   const [data, setData] = useState([]);
   const { state, dispatch } = useContext(UserContext);
   useEffect(() => {
-    fetch("/followingposts", {
+    fetch("/allposts", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
@@ -105,7 +105,6 @@ const Home = () => {
       {data.map((item) => {
         return (
           <div className="card home-card" key={item._id}>
-            <div>
             <h6 style={{ padding: "5px",margin:" 0 10px" }}>
               <Link
                 to={
@@ -115,7 +114,8 @@ const Home = () => {
                 }
               >
                 {item.postedBy.name}
-              </Link>{" "}  {item.postedBy._id === state._id && (
+              </Link>{" "}
+              {/* {item.postedBy._id == state._id && (
                 <i
                   className="material-icons"
                   style={{
@@ -125,9 +125,8 @@ const Home = () => {
                 >
                   delete
                 </i>
-              )}
-              </h6>
-              </div>
+              )} */}
+            </h6>
             <br />
             <div className="card-image">
               <img src={item.photo} alt="img"/>
@@ -191,4 +190,5 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default FollowingPosts;
+
