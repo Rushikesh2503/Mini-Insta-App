@@ -10,6 +10,7 @@ import CreatePost from './Components/Screens/CreatePost';
 import {reducer,initialState} from './Store/userReducer'
 import UserProfile from './Components/Screens/UserProfile';
 import FollowingPosts from './Components/Screens/FollowingPosts';
+import LoginPage from './Components/Screens/LoginPage';
 export const UserContext = createContext()
 
 
@@ -28,10 +29,10 @@ const Routing = () => {
   return (
     <Switch>
       <Route exact path="/" >
-      <Home />
+      <Home/>
       </Route>
       <Route exact path="/signin">
-        <Login />
+        <LoginPage />
       </Route>
       <Route path="/signup">
         <Signup />

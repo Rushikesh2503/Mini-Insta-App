@@ -59,13 +59,13 @@ const Navbar = () => {
         })
      }
   return (
-    <div>
-       <nav>
+    <div className="mainDivNav">
+       <nav className="centerNavb">
         <div className="nav-wrapper black">
           <Link to={state ? "/" : "/signin"} className="brand-logo left">
-            <img src="http://shimmeringsoul.weebly.com/uploads/1/3/0/3/13031044/1-xkmi4fb5vws6-my7b22lza_1.png" alt="logo" className="brand_logo_img" />
+            <img src="https://res.cloudinary.com/rsbrsb/image/upload/v1633065005/download_1_b5pzie.png" alt="logo" className="brand_logo_img white" />
          </Link>
-          <ul id="nav-mobile" className="right" style={{marginRight:"10px"}}>
+          <ul id="nav-mobile" className="right ulNavListM" style={{marginRight:"10px"}}>
              {renderList()}
   
           </ul>

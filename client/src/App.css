@@ -37,6 +37,16 @@
   border-bottom: 1px solid rgb(8, 93, 252) !important;
   box-shadow: 0 1px 0 0 rgb(8, 93, 252) !important;
 }
+.mainDivNav {
+  background-color: black;
+}
+.centerNavb {
+  width: 70%;
+  margin: 0 auto;
+}
+.ulNavListM > li {
+  margin-left: 20px;
+}
 
 #toast-container {
   top: 70px !important;
