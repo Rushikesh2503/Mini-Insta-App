@@ -56,6 +56,8 @@ nodemon run server in server folder
 ## Features
 
 - Fullscreen mode
+- Post Add
+- Follow
 - Easy navigation
 - Login 
 - SignUp
