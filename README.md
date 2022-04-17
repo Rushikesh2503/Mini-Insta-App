@@ -4,7 +4,7 @@
 </div> 
 </br>
 
-**This project has been done in order to learn the basic working of a website by implementing Frontend as well as Backend. Working on this project helps me to learn a lot of new things that goes into building a website. (Solo Project)**
+**This project has been done in  order to learn the basic working of a website by implementing Frontend as well as Backend. Working on this project helps me to learn a lot of new things that goes into building a website. (Solo Project)**
 
 ## Demo 
 <a href="https://miniinstaapp-rushikesh2503.vercel.app/">Mini-Insta-App</a>
